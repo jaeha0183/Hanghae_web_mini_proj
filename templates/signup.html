@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모두의 서재 회원가입</title>
+</head>
+<style>
+ 
+    .loginbox{
+        width: 300px;
+        height: 300px;
+        margin: auto;
+        padding-top: 30px;
+        margin-top: 260px;
+    
+        background-color: darkgoldenrod;
+        border-style: solid;
+        border-width: 1px;
+        border-color: black;
+        border-radius: 10px;
+    
+        text-align: center;
+    }
+    .title{
+        color: black;
+    }
+    
+    .signupbtn{
+        width: 70px;
+    }
+    .cancelbtn{
+        width: 70px;
+    }
+    </style>
+
+    <script>
+    function signup(){
+        let formData = new FormData();
+            formData.append("sample_give", "샘플데이터");
+
+            fetch('/signup', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                console.log(data);
+                alert(data["msg"]);
+            });
+
+    }
+
+
+
+
+    </script>
+
+<body>
+   
+    <div class="loginbox">
+        <h2 class="title">회원가입</h2>
+        <p> <input type="text" name="Name" placeholder="이름"></p>
+        <p> <input type="text" name="ID" placeholder="ID"></p>
+        <p> <input type="password" name="Password" placeholder="Password"></p>
+        <p> <input type="password" name="rePassword" placeholder="Password 재입력"></p>
+        <p class="btns"><button class="signupbtn" onclick="signup()">확인</button> 
+             <button class="cancelbtn" onclick="window.location.href='/'">취소</button></p>
+    </div>
+
+
+
+
+</body>
+</html>

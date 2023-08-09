@@ -143,41 +143,8 @@
                     let temp_html = `<div class="col">
                                         <div class="card h-100">
                                             <img src="${image}"
-                                                class="card-img-top" >
-                                            <div class="card-body">
-                                                <h5 class="card-title">${title}</h5>
-                                                    <p>${desc}</p>
-                                                    <p>출간일 : ${pubDate}</p>
-                                                    <p>저자 : ${author}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    `
-                    $('#cards-box').append(temp_html)
-                })
-            })
-        }
-
-        function bookSearching(){
-            let query = $('#query').val()
-            url = `http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbpalsied1142001&Query=${query}&QueryType=Keyword&MaxResults=32&start=1&SearchTarget=Book&output=js&Version=20131101`
-            console.log(query)
-            fetch(url).then((res) => res.json()).then((data) => {
-            console.log(data);
-            let rows = data['result']
-            $('#cards-box').empty()
-            rows.forEach((a) => {
-                let author = a['author']
-                let title = a['title']
-                let desc = a['description'].substring(0, 50) + "...";
-                let image = a['cover']
-                let pubDate = a['pubDate']
-                let temp_html = `<div class="col">
-                                    <div class="card h-100">
-                                        <img src="${image}"
-                                            class="card-img-top" >
-                                            <img src="${image}" class="card-img-top"
-                                            button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                class="card-img-top"
+                                                button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal" data-bs-whatever="@mdo">
                                         <!-- 모달 부분 -->
                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -221,6 +188,38 @@
                                             </div>
                                         </div>
                                         <!-- 모달 끝 -->
+                                            <div class="card-body">
+                                                <h5 class="card-title">${title}</h5>
+                                                    <p>${desc}</p>
+                                                    <p>출간일 : ${pubDate}</p>
+                                                    <p>저자 : ${author}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    `
+                    $('#cards-box').append(temp_html)
+                })
+            })
+        }
+
+        function bookSearching(){
+            let query = $('#query').val()
+            url = `http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbpalsied1142001&Query=${query}&QueryType=Keyword&MaxResults=32&start=1&SearchTarget=Book&output=js&Version=20131101`
+            console.log(query)
+            fetch(url).then((res) => res.json()).then((data) => {
+            console.log(data);
+            let rows = data['result']
+            $('#cards-box').empty()
+            rows.forEach((a) => {
+                let author = a['author']
+                let title = a['title']
+                let desc = a['description'].substring(0, 50) + "...";
+                let image = a['cover']
+                let pubDate = a['pubDate']
+                let temp_html = `<div class="col">
+                                    <div class="card h-100">
+                                        <img src="${image}"
+                                            class="card-img-top" >
                                         <div class="card-body">
                                             <h5 class="card-title" name="title">${title}</h5>
                                                     <p>${desc}</p>

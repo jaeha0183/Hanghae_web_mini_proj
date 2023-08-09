@@ -92,6 +92,15 @@
             listing();
         });
 
+        // $(document).ready(function () {
+        //     $("#exampleModal").on("show.bs.modal", function (e) {
+        //         var name = $(e.relatedTarget).data('title');
+        //         var age = $(e.relatedTarget).data('age');
+
+        //         alert(name + ':' + age);
+        //     });
+        // });
+
         function listing() {
             fetch('/book').then((res) => res.json()).then((data) => {
                 let rows = data['result']
@@ -107,17 +116,60 @@
 
                     let temp_html = `<div class="col">
                                         <div class="card h-100">
-                                            <img src="${image}"
-                                                class="card-img-top" >
-                                            <div class="card-body">
-                                                <h5 class="card-title">${title}</h5>
+                                            <img src="${image}" class="card-img-top"
+                                            button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                                        <!-- 모달 부분 -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 id="title" class="modal-title fs-5" id="exampleModalLabel">${title}</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="mb-3">
+                                                                <div class="imgBook">
+                                                                    <img src="${image}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <p><label for="book-content" class="boldText">줄거리</label></p>
+                                                                <p><text>${desc}<</text></p>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <p><label for="message-text" class="boldText">감상평</label></p>
+                                                                <p><select class="form-select" id="inputGroupSelect01">
+                                                                        <option selected>-- 선택하기 --</option>
+                                                                        <option value="1">⭐</option>
+                                                                        <option value="2">⭐⭐</option>
+                                                                        <option value="3">⭐⭐⭐</option>
+                                                                        <option value="4">⭐⭐⭐⭐</option>
+                                                                        <option value="5">⭐⭐⭐⭐⭐</option>
+                                                                    </select></p>
+                                                                <p><textarea class="form-control" id="message-text"></textarea></p>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
+                                                        <button type="button" class="btn btn-primary">저장</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 모달 끝 -->
+                                        <div class="card-body">
+                                            <h5 class="card-title" name="title">${title}</h5>
                                                     <p>${desc}</p>
                                                     <p>출간일 : ${pubDate}</p>
                                                     <p>저자 : ${author}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    `
+                                       `
                     $('#cards-box').append(temp_html)
                 })
             })
@@ -202,14 +254,14 @@
             <div class="col">
                 <div class="card h-100">
                     <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                        class="card-img-top" button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        data-bs-whatever="@mdo">
+                        class="card-img-top" button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" data-bs-whatever="@mdo">
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">책 이름</h1>
+                                    <h1 id="title" class="modal-title fs-5" id="exampleModalLabel"></h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -229,7 +281,7 @@
                                             <p><select class="form-select" id="inputGroupSelect01">
                                                     <option selected>-- 선택하기 --</option>
                                                     <option value="1">⭐</option>
-                                                    <option value="2">⭐⭐<option>
+                                                    <option value="2">⭐⭐</option>
                                                     <option value="3">⭐⭐⭐</option>
                                                     <option value="4">⭐⭐⭐⭐</option>
                                                     <option value="5">⭐⭐⭐⭐⭐</option>

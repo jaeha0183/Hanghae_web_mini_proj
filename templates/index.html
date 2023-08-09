@@ -96,11 +96,12 @@
             fetch('/book').then((res) => res.json()).then((data) => {
                 let rows = data['result']
                 $('#cards-box').empty()
+                console.log(rows)
                 rows.forEach((a)=>{
                     let comment = a['comment']
                     let title = a['title']
-                    let desc = a['desc']
-                    let image = a['image']
+                    let desc = a['description']
+                    let image = a['cover']
                     let star = a['star']
 
                     let star_repeat = '⭐'.repeat(star)

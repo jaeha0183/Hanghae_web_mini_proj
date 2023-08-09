@@ -43,8 +43,12 @@ def book_post():
 
 @app.route("/book", methods=["GET"])
 def book_get():
-    all_movies = list(db.movies.find({}, {'_id': False}))
-    return jsonify({'result': all_movies})
+    TTBkey = "ttbpalsied1142001"
+    url = f"http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey={TTBkey}&" \
+          f"QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101"
+    res = requests.get(url)
+    r = res.json()['item']
+    return jsonify({'result': r})
 
 
 if __name__ == '__main__':

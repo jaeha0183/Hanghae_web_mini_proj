@@ -100,7 +100,7 @@
                 rows.forEach((a)=>{
                     let author = a['author']
                     let title = a['title']
-                    let desc = a['description']
+                    let desc = a['description'].substring(0, 50) + "...";
                     let image = a['cover']
                     let pubDate = a['pubDate']
 
@@ -108,15 +108,16 @@
                     let temp_html = `<div class="col">
                                         <div class="card h-100">
                                             <img src="${image}"
-                                                class="card-img-top">
+                                                class="card-img-top" >
                                             <div class="card-body">
                                                 <h5 class="card-title">${title}</h5>
-                                                <p class="card-text">${desc}</p>
-                                                <p>출간일 : ${pubDate}</p>
-                                                <p class="pubDate">저자 : ${author}</p>
+                                                    <p>${desc}</p>
+                                                    <p>출간일 : ${pubDate}</p>
+                                                    <p>저자 : ${author}</p>
                                             </div>
                                         </div>
-                                    </div>`
+                                    </div>
+                                    `
                     $('#cards-box').append(temp_html)
                 })
             })

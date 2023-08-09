@@ -128,12 +128,10 @@
     </style>
     <script>
         $(document).ready(function () {
-            listing();
+            bestseller();
         });
 
-        function listing() {
-            fetch('/book').then((res) => res.json()).then((data) => {
-                let rows = data['result']
+        function lists(rows) {
                 $('#cards-box').empty()
                 rows.forEach((a) => {
                     let author = a['author']
@@ -200,54 +198,24 @@
                                     `
                     $('#cards-box').append(temp_html)
                 })
-            })
         }
 
-        function bookSearching() {
-            let query = $('#query').val()
-            url = `http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbpalsied1142001&Query=${query}&QueryType=Keyword&MaxResults=32&start=1&SearchTarget=Book&output=js&Version=20131101`
-            console.log(query)
-            fetch(url).then((res) => res.json()).then((data) => {
-                console.log(data);
+        function bestseller(){
+                    fetch('/book').then((res) => res.json()).then((data) => {
                 let rows = data['result']
-                $('#cards-box').empty()
-                rows.forEach((a) => {
-                    let author = a['author']
-                    let title = a['title']
-                    let desc = a['description'].substring(0, 50) + "...";
-                    let image = a['cover']
-                    let pubDate = a['pubDate']
-                    let temp_html = `<div class="col">
-                                    <div class="card h-100">
-                                        <img src="${image}"
-                                            class="card-img-top" >
-                                        <div class="card-body">
-                                            <h5 class="card-title" name="title">${title}</h5>
-                                                    <p>${desc}</p>
-                                                    <p>출간일 : ${pubDate}</p>
-                                                    <p>저자 : ${author}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                       `
-                    $('#cards-box').append(temp_html)
-                })
-            })
-        }
+                lists(rows)
+        })}
 
-        function posting() {
-            let url = $('#url').val()
-            let comment = $('#comment').val()
-            let star = $('#star').val()
+        function book_searching() {
+        let search_value = $('#search_value').val()
 
             let formData = new FormData();
-            formData.append("url_give", url);
-            formData.append("comment_give", comment);
-            formData.append("star_give", star);
+            formData.append("search_value", search_value);
 
-            fetch('/book', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                alert(data['msg'])
-                window.location.reload()
+            fetch('/book/search', {method: "POST", body: formData}).then((res) => res.json()).then((data) => {
+                console.log(data)
+                let rows = data['result']
+                lists(rows)
             })
         }
 
@@ -301,16 +269,9 @@
 <body>
     <div class="mytitle">
         <h1>모두의 서재</h1>
-        <form role="search" id="form">
-            <input type="search" id="query" name="q" placeholder="도서 검색" aria-label="Search through site content">
-            <button>
-                <svg viewBox="0 0 1024 1024">
-                    <path class="path1"
-                        d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
-                    </path>
-                </svg>
+            <input id="search_value" placeholder="도서 검색">
+            <button onclick="book_searching()" type="submit">
             </button>
-        </form>
     </div>
     <div class="mypost" id="post-box">
         <div class="form-floating mb-3">

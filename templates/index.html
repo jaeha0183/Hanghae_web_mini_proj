@@ -20,6 +20,44 @@
         * {
             font-family: 'Gowun Dodum', sans-serif;
         }
+        form {
+        background-color: #ffffff;
+        width: 300px;
+        height: 44px;
+        border-radius: 5px;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+      }
+
+      input {
+        all: unset;
+        font: 16px system-ui;
+        color: rgb(24, 24, 24);
+        height: 100%;
+        width: 100%;
+        padding: 6px 10px;
+      }
+
+      ::placeholder {
+        color: rgb(147, 147, 147);
+        opacity: 0.7;
+      }
+
+      svg {
+        color: rgb(167, 167, 167);
+        fill: currentColor;
+        width: 24px;
+        height: 24px;
+        padding: 10px;
+      }
+
+      button {
+        all: unset;
+        cursor: pointer;
+        width: 44px;
+        height: 44px;
+      }
 
         .mytitle {
             width: 100%;
@@ -177,7 +215,14 @@
 <body>
     <div class="mytitle">
         <h1>내 생애 최고의 영화들</h1>
-        <button onclick="open_box()">영화 기록하기</button>
+        <form role="search" id="form">
+            <input type="search" id="query" name="q"
+             placeholder="Search..."
+             aria-label="Search through site content">
+            <button>
+              <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+            </button>
+          </form>
     </div>
     <div class="mypost" id="post-box">
         <div class="form-floating mb-3">

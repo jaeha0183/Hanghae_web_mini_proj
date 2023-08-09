@@ -12,7 +12,7 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <title>스파르타 피디아</title>
+    <title>모두의 서재</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
@@ -230,32 +230,6 @@
             })
         }
 
-        function open_box() {
-            $('#post-box').show()
-        }
-        function close_box() {
-            $('#post-box').hide()
-        }
-
-        function save_info() {
-            let star = $("#inputGroupSelect01").val(); //별점
-            let message = $("#message-text").val(); //후기
-            let formData = new FormData();
-            console.log(formData + "폼 데이터 전");
-            formData.append("comment_chan_give", message); //후기
-            formData.append("star_chan_give", star); //별점
-            console.log(formData + "append 후");
-
-            fetch("/book_save", { method: "POST", body: formData })
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log("최종");
-                    alert(data["msg"]);
-                    window.location.reload();
-                });
-        }
-
-
         const exampleModal = document.getElementById('exampleModal')
         if (exampleModal) {
             exampleModal.addEventListener('show.bs.modal', event => {
@@ -286,30 +260,6 @@
         <button class = "searchButton" onclick="book_searching()" type="submit"> 검색 </button>
             
     </div>
-    <div class="mypost" id="post-box">
-        <div class="form-floating mb-3">
-            <input id="url" type="email" class="form-control" placeholder="name@example.com">
-            <label>영화URL</label>
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">별점</label>
-            <select class="form-select" id="star">
-                <option selected>-- 선택하기 --</option>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
-        </div>
-        <div class="form-floating">
-            <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
-            <label for="floatingTextarea2">코멘트</label>
-        </div>
-        <div class="mybtns">
-            <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
-            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-        </div>
     </div>
     <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
@@ -359,42 +309,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">나의 한줄 평을 씁니다</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">나의 한줄 평을 씁니다</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">영화 제목이 들어갑니다</h5>
-                        <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>
-                        <p>⭐⭐⭐</p>
-                        <p class="mycomment">나의 한줄 평을 씁니다</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                        class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">영화 제목이 들어갑니다</h5>
                         <p class="card-text">여기에 영화에 대한 설명이 들어갑니다.</p>

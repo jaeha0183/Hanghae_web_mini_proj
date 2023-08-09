@@ -30,18 +30,27 @@
             flex-direction: row;
             align-items: center;
         }
+        
+        .searchBar {
+            border: 1px solid white;
+            border-radius: 20px;
+            margin: 20px 0px 20px 0px;
+        }
 
         input {
             all: unset;
             font: 16px system-ui;
-            color: rgb(24, 24, 24);
+            color: rgb(255, 255, 255);
             height: 100%;
             width: 100%;
             padding: 6px 10px;
+            text-align: center;
+            
         }
 
-        ::placeholder {
-            color: rgb(70, 198, 72);
+        input::placeholder {
+            text-align: center;
+            color: rgb(255, 255, 255);
             opacity: 0.7;
         }
 
@@ -53,7 +62,7 @@
             padding: 10px;
         }
 
-        button {
+        .searchButton {
             all: unset;
             cursor: pointer;
             width: 44px;
@@ -77,7 +86,7 @@
         }
 
         .mytitle>button {
-            width: 200px;
+            width: 100px;
             height: 50px;
 
             background-color: transparent;
@@ -87,6 +96,8 @@
             border: 1px solid white;
 
             margin-top: 10px;
+
+            text-align: center;
         }
 
         .mytitle>button:hover {
@@ -269,9 +280,11 @@
 <body>
     <div class="mytitle">
         <h1>모두의 서재</h1>
-            <input id="search_value" placeholder="도서 검색">
-            <button onclick="book_searching()" type="submit">
-            </button>
+
+        <div class = "searchBar"> <input id="search_value" placeholder="도서 검색"> </div>
+        
+        <button class = "searchButton" onclick="book_searching()" type="submit"> 검색 </button>
+            
     </div>
     <div class="mypost" id="post-box">
         <div class="form-floating mb-3">

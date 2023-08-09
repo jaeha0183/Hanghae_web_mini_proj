@@ -45,7 +45,7 @@ def book_post():
 def book_get():
     TTBkey = "ttbpalsied1142001"
     url = f"http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey={TTBkey}&" \
-          f"QueryType=ItemNewAll&MaxResults=30&start=1&SearchTarget=Book&output=js&Version=20131101&cover=Big"
+          f"QueryType=ItemNewAll&MaxResults=32&start=1&SearchTarget=Book&output=js&Version=20131101&cover=Big"
     res = requests.get(url)
     r = res.json()['item']
     return jsonify({'result': r})

@@ -98,13 +98,12 @@
                 $('#cards-box').empty()
                 console.log(rows)
                 rows.forEach((a)=>{
-                    let comment = a['comment']
+                    let author = a['author']
                     let title = a['title']
                     let desc = a['description']
                     let image = a['cover']
-                    let star = a['star']
+                    let pubDate = a['pubDate']
 
-                    let star_repeat = '⭐'.repeat(star)
 
                     let temp_html = `<div class="col">
                                         <div class="card h-100">
@@ -113,8 +112,8 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">${title}</h5>
                                                 <p class="card-text">${desc}</p>
-                                                <p>${star_repeat}</p>
-                                                <p class="mycomment">${comment}</p>
+                                                <p>출간일 : ${pubDate}</p>
+                                                <p class="pubDate">저자 : ${author}</p>
                                             </div>
                                         </div>
                                     </div>`

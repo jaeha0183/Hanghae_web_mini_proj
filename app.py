@@ -11,13 +11,13 @@ db = client.dbsparta
 app = Flask(__name__)
 
 
-@app.route('/main')
+@app.route('/')
 def main():
     return render_template('index.html')
 
-@app.route('/')
-def home():
-   return render_template('login.html')
+# @app.route('/')
+# def home():
+#    return render_template('login.html')
 
 @app.route('/signup')
 def signup():
@@ -74,6 +74,19 @@ def book_get():
     res = requests.get(url)
     r = res.json()['item']
     return jsonify({'result': r})
+
+
+@app.route("/book_save", methods=["POST"])
+def book_save():
+    star_chan_receive = request.form['star_chan_give']
+    comment_chan_receive = request.form['comment_chan_give']
+    print(star_chan_receive, comment_chan_receive)
+    doc = {
+        'star': star_chan_receive,
+        'comment': comment_chan_receive
+    }
+    db.userinfo.insert_one(doc)
+    return jsonify({'msg': '저장완료!'})
 
 
 

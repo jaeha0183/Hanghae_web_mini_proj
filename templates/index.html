@@ -20,44 +20,45 @@
         * {
             font-family: 'Gowun Dodum', sans-serif;
         }
+
         form {
-        background-color: #ffffff;
-        width: 300px;
-        height: 44px;
-        border-radius: 5px;
-        display:flex;
-        flex-direction:row;
-        align-items:center;
-      }
+            background-color: #ffffff;
+            width: 300px;
+            height: 44px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
 
-      input {
-        all: unset;
-        font: 16px system-ui;
-        color: rgb(24, 24, 24);
-        height: 100%;
-        width: 100%;
-        padding: 6px 10px;
-      }
+        input {
+            all: unset;
+            font: 16px system-ui;
+            color: rgb(24, 24, 24);
+            height: 100%;
+            width: 100%;
+            padding: 6px 10px;
+        }
 
-      ::placeholder {
-        color: rgb(70, 198, 72);
-        opacity: 0.7;
-      }
+        ::placeholder {
+            color: rgb(70, 198, 72);
+            opacity: 0.7;
+        }
 
-      svg {
-        color: rgb(70, 198, 72);
-        fill: currentColor;
-        width: 40px;
-        height: 40px;
-        padding: 10px;
-      }
+        svg {
+            color: rgb(70, 198, 72);
+            fill: currentColor;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+        }
 
-      button {
-        all: unset;
-        cursor: pointer;
-        width: 44px;
-        height: 44px;
-      }
+        button {
+            all: unset;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+        }
 
         .mytitle {
             width: 100%;
@@ -134,7 +135,7 @@
             fetch('/book').then((res) => res.json()).then((data) => {
                 let rows = data['result']
                 $('#cards-box').empty()
-                rows.forEach((a)=>{
+                rows.forEach((a) => {
                     let author = a['author']
                     let title = a['title']
                     let desc = a['description'].substring(0, 50) + "...";
@@ -182,7 +183,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-                                                        <button type="button" class="btn btn-primary">저장</button>
+                                                        <button onclick="save_info()" type="button" class="btn btn-primary">저장</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -202,21 +203,21 @@
             })
         }
 
-        function bookSearching(){
+        function bookSearching() {
             let query = $('#query').val()
             url = `http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbpalsied1142001&Query=${query}&QueryType=Keyword&MaxResults=32&start=1&SearchTarget=Book&output=js&Version=20131101`
             console.log(query)
             fetch(url).then((res) => res.json()).then((data) => {
-            console.log(data);
-            let rows = data['result']
-            $('#cards-box').empty()
-            rows.forEach((a) => {
-                let author = a['author']
-                let title = a['title']
-                let desc = a['description'].substring(0, 50) + "...";
-                let image = a['cover']
-                let pubDate = a['pubDate']
-                let temp_html = `<div class="col">
+                console.log(data);
+                let rows = data['result']
+                $('#cards-box').empty()
+                rows.forEach((a) => {
+                    let author = a['author']
+                    let title = a['title']
+                    let desc = a['description'].substring(0, 50) + "...";
+                    let image = a['cover']
+                    let pubDate = a['pubDate']
+                    let temp_html = `<div class="col">
                                     <div class="card h-100">
                                         <img src="${image}"
                                             class="card-img-top" >
@@ -257,6 +258,25 @@
             $('#post-box').hide()
         }
 
+        function save_info() {
+            let star = $("#inputGroupSelect01").val(); //별점
+            let message = $("#message-text").val(); //후기
+            let formData = new FormData();
+            console.log(formData + "폼 데이터 전");
+            formData.append("comment_chan_give", message); //후기
+            formData.append("star_chan_give", star); //별점
+            console.log(formData + "append 후");
+
+            fetch("/book_save", { method: "POST", body: formData })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log("최종");
+                    alert(data["msg"]);
+                    window.location.reload();
+                });
+        }
+
+
         const exampleModal = document.getElementById('exampleModal')
         if (exampleModal) {
             exampleModal.addEventListener('show.bs.modal', event => {
@@ -282,13 +302,15 @@
     <div class="mytitle">
         <h1>모두의 서재</h1>
         <form role="search" id="form">
-            <input type="search" id="query" name="q"
-             placeholder="도서 검색"
-             aria-label="Search through site content">
+            <input type="search" id="query" name="q" placeholder="도서 검색" aria-label="Search through site content">
             <button>
-              <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+                <svg viewBox="0 0 1024 1024">
+                    <path class="path1"
+                        d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
+                    </path>
+                </svg>
             </button>
-          </form>
+        </form>
     </div>
     <div class="mypost" id="post-box">
         <div class="form-floating mb-3">
@@ -358,7 +380,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-                                    <button type="button" class="btn btn-primary">저장</button>
+                                    <button onclick="save_info()" type="button" class="btn btn-primary">저장</button>
                                 </div>
                             </div>
                         </div>

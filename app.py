@@ -15,6 +15,14 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/')
+def home():
+   return render_template('login.html')
+
+@app.route('/signup')
+def signup():
+   return render_template('signup.html')
+
 
 @app.route("/book", methods=["POST"])
 def book_post():

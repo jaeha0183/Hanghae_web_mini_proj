@@ -1,14 +1,11 @@
-from flask import Flask, render_template, request, jsonify
-
-app = Flask(__name__)
-
-from pymongo import MongoClient
-
-client = MongoClient('내 mongoDB URL')
-db = client.dbsparta
-
 import requests
+from flask import Flask, render_template, request, jsonify
 from bs4 import BeautifulSoup
+from pymongo import MongoClient
+TTBkey: "ttbpalsied1142001"
+client = MongoClient('mongodb+srv://jinhey:dbtester@cluster0.r3i3cqv.mongodb.net/?retryWrites=true&w=majority')
+db = client.dbsparta
+app = Flask(__name__)
 
 
 @app.route('/')
@@ -16,8 +13,8 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/movie", methods=["POST"])
-def movie_post():
+@app.route("/book", methods=["POST"])
+def book_post():
     url_receive = request.form['url_give']
     comment_receive = request.form['comment_give']
     star_receive = request.form['star_give']
@@ -44,8 +41,8 @@ def movie_post():
     return jsonify({'msg': '저장완료!'})
 
 
-@app.route("/movie", methods=["GET"])
-def movie_get():
+@app.route("/book", methods=["GET"])
+def book_get():
     all_movies = list(db.movies.find({}, {'_id': False}))
     return jsonify({'result': all_movies})
 

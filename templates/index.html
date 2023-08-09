@@ -93,7 +93,7 @@
         });
 
         function listing() {
-            fetch('/movie').then((res) => res.json()).then((data) => {
+            fetch('/book').then((res) => res.json()).then((data) => {
                 let rows = data['result']
                 $('#cards-box').empty()
                 rows.forEach((a)=>{
@@ -132,7 +132,7 @@
             formData.append("comment_give", comment);
             formData.append("star_give", star);
 
-            fetch('/movie', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+            fetch('/book', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
                 alert(data['msg'])
                 window.location.reload()
             })

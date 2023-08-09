@@ -96,15 +96,12 @@
             fetch('/book').then((res) => res.json()).then((data) => {
                 let rows = data['result']
                 $('#cards-box').empty()
-                console.log(rows)
                 rows.forEach((a)=>{
                     let author = a['author']
                     let title = a['title']
                     let desc = a['description'].substring(0, 50) + "...";
                     let image = a['cover']
                     let pubDate = a['pubDate']
-
-
                     let temp_html = `<div class="col">
                                         <div class="card h-100">
                                             <img src="${image}"
@@ -118,6 +115,35 @@
                                         </div>
                                     </div>
                                     `
+                    $('#cards-box').append(temp_html)
+                })
+            })
+        }
+
+        function bookSearching(){
+            fetch('booksearch').then((res) => res.json()).then((data) => {
+            console.log(data);
+            let rows = data['result']
+            $('#cards-box').empty()
+            rows.forEach((a) => {
+                let author = a['author']
+                let title = a['title']
+                let desc = a['description'].substring(0, 50) + "...";
+                let image = a['cover']
+                let pubDate = a['pubDate']
+                let temp_html = `<div class="col">
+                                    <div class="card h-100">
+                                        <img src="${image}"
+                                            class="card-img-top" >
+                                        <div class="card-body">
+                                            <h5 class="card-title">${title}</h5>
+                                                <p>${desc}</p>
+                                                <p>출간일 : ${pubDate}</p>
+                                                <p>저자 : ${author}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                `
                     $('#cards-box').append(temp_html)
                 })
             })

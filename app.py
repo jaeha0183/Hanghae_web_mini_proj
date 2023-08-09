@@ -54,15 +54,6 @@ def book_get():
     return jsonify({'result': r})
 
 
-@app.route("/booksearch")
-def book_search():
-    search_receive = request.form['search_give']
-    url= f"http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey={TTBkey}&" \
-         f"Query={search_receive}&QueryType=Keyword&MaxResults=32&start=1&SearchTarget=Book&output=js&Version=20131101"
-    res = requests.get(url)
-    r = res.json(url)
-    return jsonify({'result': r})
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)

@@ -92,51 +92,50 @@
             listing();
         });
 
-				function listing() {
-            fetch('/movie').then(res => res.json()).then(data => {
-                    let rows = data['result']
-				            $('#cards-box').empty()
-                    rows.forEach((a) => {
-												let comment = a['comment']
-                        let title = a['title']
-                        let image = a['image']
-                        let desc = a['desc']
-                        let star = a['star']
+        function listing() {
+            fetch('/movie').then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                $('#cards-box').empty()
+                rows.forEach((a)=>{
+                    let comment = a['comment']
+                    let title = a['title']
+                    let desc = a['desc']
+                    let image = a['image']
+                    let star = a['star']
 
-                        let star_repeat = '⭐'.repeat(star)
+                    let star_repeat = '⭐'.repeat(star)
 
-                        let temp_html = `<div class="col">
-                                            <div class="card h-100">
-                                                <img src="${image}"
-                                                     class="card-img-top">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">${title}</h5>
-                                                    <p class="card-text">${desc}</p>
-                                                    <p>${star_repeat}</p>
-                                                    <p class="mycomment">${comment}</p>
-                                                </div>
+                    let temp_html = `<div class="col">
+                                        <div class="card h-100">
+                                            <img src="${image}"
+                                                class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${title}</h5>
+                                                <p class="card-text">${desc}</p>
+                                                <p>${star_repeat}</p>
+                                                <p class="mycomment">${comment}</p>
                                             </div>
-                                        </div>`
-
-                        $('#cards-box').append(temp_html)
-                    })
+                                        </div>
+                                    </div>`
+                    $('#cards-box').append(temp_html)
                 })
+            })
         }
 
         function posting() {
             let url = $('#url').val()
             let comment = $('#comment').val()
-            let star= $('#star').val()
+            let star = $('#star').val()
 
-            let formData = new FormData()
-            formData.append("url_give", url)
-            formData.append("comment_give", comment)
-            formData.append("star_give", star)
+            let formData = new FormData();
+            formData.append("url_give", url);
+            formData.append("comment_give", comment);
+            formData.append("star_give", star);
 
-            fetch('/movie', {method: "POST",body: formData}).then(res => res.json()).then(data => {
-                    alert(data['msg'])
-                    window.location.reload()
-                })
+            fetch('/movie', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                alert(data['msg'])
+                window.location.reload()
+            })
         }
 
         function open_box() {
@@ -158,17 +157,17 @@
             <input id="url" type="email" class="form-control" placeholder="name@example.com">
             <label>영화URL</label>
         </div>
-		<div class="input-group mb-3">
-          <label class="input-group-text" for="inputGroupSelect01">별점</label>
-          <select class="form-select" id="star">
-              <option selected>-- 선택하기 --</option>
-              <option value="1">⭐</option>
-              <option value="2">⭐⭐</option>
-              <option value="3">⭐⭐⭐</option>
-              <option value="4">⭐⭐⭐⭐</option>
-              <option value="5">⭐⭐⭐⭐⭐</option>
-          </select>
-      </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">별점</label>
+            <select class="form-select" id="star">
+                <option selected>-- 선택하기 --</option>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
         <div class="form-floating">
             <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
             <label for="floatingTextarea2">코멘트</label>

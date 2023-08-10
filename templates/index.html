@@ -168,8 +168,8 @@
                 let temp_html = `
                                     <div class="col">
                                         <div class="card h-100">
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#${isbn}">
-                                            <img src="${image}" class="card-img-top"></button>
+                                            <img src="${image}" class="card-img-top"
+                                            type="button" data-bs-toggle="modal" data-bs-target="#${isbn}">
                                             <div class="card-body">
                                                 <h5 class="card-title">${title}</h5>
                                                 <p class="card-text">${desc}</p>
@@ -194,11 +194,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <p><label for="book-content" class="boldText">줄거리</label></p>
-                                                                <p><text>${desc}<</text></p>
+                                                                <p>줄거리</p>
+                                                                <p><text>${desc}</text></p>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <p><label for="message-text" class="boldText">감상평</label></p>
+                                                                <p><label for="message-text">감상평</label></p>
                                                                 <p><select class="form-select" id="inputGroupSelect01">
                                                                         <option selected>-- 선택하기 --</option>
                                                                         <option value="1">⭐</option>
@@ -252,7 +252,7 @@
     <div class="mytitle">
         <h1 class="webTitle" onClick = "window.location.reload()"  style='cursor:pointer;'>모두의 서재</h1>
 
-        <div class="searchBar"> <input id="search_value" placeholder="도서 검색"> </div>
+        <div class="searchBar"><input id="search_value" placeholder="도서 검색"></div>
 
         <button class="searchButton" onclick="book_searching()" type="submit"> 검색 </button>
 

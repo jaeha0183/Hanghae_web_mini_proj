@@ -165,11 +165,17 @@
                 let pubDate = a['pubDate']
                 let isbn = a['isbn']
                 let itemId = a['itemId']
-                let temp_html = `<button type="button" data-bs-toggle="modal" data-bs-target="#${isbn}">
+                let temp_html = `
                                     <div class="col">
                                         <div class="card h-100">
-                                            <img src="${image}" class="card-img-top">
-                                                </button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#${isbn}">
+                                            <img src="${image}" class="card-img-top"></button>
+                                            <div class="card-body">
+                                                <h5 class="card-title">${title}</h5>
+                                                <p class="card-text">${desc}</p>
+                                                <p class="card-text">${pubDate}</p>
+                                                <p class="card-text">${author}</p>
+                                            </div>
                                         <!-- 모달 부분 -->
                                         <div class="modal fade" id="${isbn}" tabindex="-1" aria-labelledby="${itemId}" aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
@@ -177,7 +183,8 @@
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5" id="${itemId}">${title}</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                                                            aria-label="Close">
+                                                            </button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form>

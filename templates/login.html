@@ -67,8 +67,7 @@ function login(){
             console.log(data)
             alert(data['msg'])
             if(data['result']=='success'){
-            var link = '/main?';
-            location.href=link+value;
+            window.location.replace('/main')
             }
         })
     
@@ -82,7 +81,7 @@ function login(){
         <h2 class="title">Login</h2>
         <p> <input type="text" name="id" placeholder="ID" id="id"></p>
         <p> <input type="password" name="pw" placeholder="Password" id="pw"></p>
-        <p class="btns"><button class="loginbtn" onclick="login()">로그인</button>  <button class="signupbtn" onclick="window.location.href='/signup'">회원가입</button></p>
+        <p class="btns"><button class="loginbtn" onclick="login()">로그인</button>  <button class="signupbtn" onclick="window.location.replace('/signup')">회원가입</button></p>
     </div>
 </body>
 

@@ -229,7 +229,7 @@
 
         function lists(rows) {
             $('#cards-box').empty()
-            let userID = getUser()
+            let userID = session["id"]
 
             let index = 0
             let string = 'a'
@@ -351,9 +351,7 @@
         }
 
         function getUser() {
-            temp = location.href
-            userID = temp[1].split("?");
-            console.log("아이디는"+userID)
+            userID = {{session["id"]}}
             return userID
         }
 

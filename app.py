@@ -1,3 +1,4 @@
+from flask import session
 import requests
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
@@ -10,6 +11,7 @@ client = MongoClient('mongodb+srv://jinhey:dbtester@cluster0.r3i3cqv.mongodb.net
                      tlsCAFile=ca)
 db = client.dbsparta
 app = Flask(__name__)
+app.secret_key = "heypoppop"
 CORS(app)
 
 
@@ -30,6 +32,7 @@ def login_get():
     result = db.users.find_one({'id': id_receive, 'pw': pw_receive})
 
     if result is not None:
+        session['id'] = id_receive
         return jsonify({'result': 'success', 'msg': '로그인 성공!'})
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})

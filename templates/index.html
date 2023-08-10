@@ -284,8 +284,8 @@
         function logout() {
 
             if (confirm("로그아웃하시겠습니까?")) {
-
-                window.location.href = "/login";
+                var loginlink = 'http://localhost:5001/';
+                location.href=loginlink;
             }
         }
     </script>

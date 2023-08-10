@@ -15,8 +15,11 @@
     <title>모두의 서재</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/modal2.css">
 
     <style>
+<<<<<<< HEAD
+=======
         * {
             font-family: 'Gowun Dodum', sans-serif;
         }
@@ -153,6 +156,10 @@
         }
 
         
+<<<<<<< Updated upstream
+=======
+>>>>>>> 570583297d868f8027e899246b9df23f5bc61387
+>>>>>>> Stashed changes
     </style>
     <script>
         $(document).ready(function () {
@@ -218,7 +225,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-                                                        <button type="button" class="btn btn-primary">저장</button>
+                                                        <button onclick="save_info()" type="button" class="btn btn-primary">저장</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,6 +255,29 @@
                 lists(rows)
             })
         }
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+        function save_info() {
+            let star = $("#inputGroupSelect01").val(); //별점
+            let message = $("#message-text").val(); //후기
+            let formData = new FormData();
+            console.log(formData + "폼 데이터 전");
+            formData.append("comment_chan_give", message); //후기
+            formData.append("star_chan_give", star); //별점
+            console.log(formData + "append 후");
+
+            fetch("/book_save", { method: "POST", body: formData })
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log("최종");
+                    alert(data["msg"]);
+                    window.location.reload();
+                });
+        }
+=======
+>>>>>>> Stashed changes
         function logout() {
       
         if (confirm("로그아웃하시겠습니까?")) {
@@ -255,11 +285,22 @@
           window.location.href = "/login";
         }
 }
+<<<<<<< Updated upstream
+=======
+>>>>>>> 570583297d868f8027e899246b9df23f5bc61387
+>>>>>>> Stashed changes
 
     </script>
 </head>
 
 <body>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    <div class="mytitle">
+        <h1 class="webTitle" onClick="window.location.reload()" style='cursor:pointer;'>모두의 서재</h1>
+=======
+>>>>>>> Stashed changes
 
   
       <div>
@@ -270,6 +311,7 @@
   <div class="mytitle">
 
         <h1 class="webTitle" onClick = "window.location.reload()"  style='cursor:pointer;'>모두의 서재</h1>
+>>>>>>> 570583297d868f8027e899246b9df23f5bc61387
 
         <div class="searchBar"><input id="search_value" placeholder="도서 검색"></div>
 

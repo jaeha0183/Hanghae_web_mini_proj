@@ -15,9 +15,148 @@
     <title>모두의 서재</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
 
     <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .webTitle {
+            color: #fff;
+            font-weight: bold;
+            font-size: 90px;
+            text-align: center;
+            width: 500px;
+            padding: 0.7rem 1rem;
+            background: #583d0c;
+            -webkit-box-shadow: 5px 5px 0 #302510;
+            box-shadow: 5px 5px 0 #302510;
+        }
+
+        .imgBook {
+            text-align: center;
+        }
+
+        .boldText {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .searchBar {
+            border: 1px solid white;
+            border-radius: 20px;
+            margin: 20px 0px 20px 0px;
+        }
+
+        input {
+            all: unset;
+            font: 16px system-ui;
+            color: rgb(255, 255, 255);
+            height: 100%;
+            width: 100%;
+            padding: 6px 10px;
+            text-align: center;
+
+        }
+
+        input::placeholder {
+            text-align: center;
+            color: rgb(255, 255, 255);
+            opacity: 0.7;
+        }
+
+        svg {
+            color: rgb(70, 198, 72);
+            fill: currentColor;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+        }
+
+        .searchButton {
+            all: unset;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+        }
+
+        .mytitle {
+            width: 100%;
+            height: 500px;
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://c.wallhere.com/photos/c1/da/library_artwork_books-1154729.jpg!d');
+            background-position: center;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mytitle>button {
+            width: 100px;
+            height: 50px;
+
+            background-color: transparent;
+            color: white;
+
+            border-radius: 50px;
+            border: 1px solid white;
+
+            margin-top: 10px;
+
+            text-align: center;
+        }
+
+        .mytitle>button:hover {
+            border: 2px solid white;
+        }
+
+        .mycomment {
+            color: gray;
+        }
+
+        .mycards {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1200px;
+        }
+
+        .mypost {
+            width: 95%;
+            max-width: 500px;
+            margin: 20px auto 0px auto;
+            padding: 20px;
+            box-shadow: 0px 0px 3px 0px gray;
+
+            display: none;
+        }
+
+        .mybtns {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 20px;
+        }
+
+        .mybtns>button {
+            margin-right: 10px;
+        }
+
+        /* form {
+            background-color: #ffffff;
+            width: 300px;
+            height: 44px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        } */
     </style>
     <script>
         $(document).ready(function () {
@@ -133,27 +272,28 @@
         }
 
         function logout() {
-      
-        if (confirm("로그아웃하시겠습니까?")) {
-        
-          window.location.href = "/login";
+
+            if (confirm("로그아웃하시겠습니까?")) {
+
+                window.location.href = "/login";
+            }
         }
-}
     </script>
 </head>
 
 <body>
     <div class="mytitle">
         <h1 class="webTitle" onClick="window.location.reload()" style='cursor:pointer;'>모두의 서재</h1>
-      <div>
-      <button class="Logout_Button" type="submit"  onclick="logout()" style='cursor:pointer; position: absolute; top: 0; right: 0;'>로그아웃</button>
-      </div>
+        <div>
+            <button class="Logout_Button" type="submit" onclick="logout()"
+                style='cursor:pointer; position: absolute; top: 0; right: 0;'>로그아웃</button>
+        </div>
 
-  <div class="mytitle">
-        <h1 class="webTitle" onClick = "window.location.reload()"  style='cursor:pointer;'>모두의 서재</h1>
-        <div class="searchBar"><input id="search_value" placeholder="도서 검색"></div>
-        <button class="searchButton" onclick="book_searching()" type="submit"> 검색 </button>
-    </div>
+        <div class="mytitle">
+            <h1 class="webTitle" onClick="window.location.reload()" style='cursor:pointer;'>모두의 서재</h1>
+            <div class="searchBar"><input id="search_value" placeholder="도서 검색"></div>
+            <button class="searchButton" onclick="book_searching()" type="submit"> 검색 </button>
+        </div>
     </div>
     <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">

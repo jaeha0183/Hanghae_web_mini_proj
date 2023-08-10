@@ -61,10 +61,11 @@ function login(){
         formData.append("pw_gives", pw);
         
         console.log("frontcheck1")
-        fetch('/login').then(res => res.json()).then(data => {
+        fetch('/login',{ method: "POST", body: formData }).then(res => res.json()).then(data => {
             console.log(data)
             alert(data['msg'])
         })
+        console.log(id, pw)
     }
 }
 

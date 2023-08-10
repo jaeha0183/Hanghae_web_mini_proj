@@ -20,7 +20,7 @@ def main():
 def home():
     return render_template('login.html')
 
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['POST'])
 def login_get():
     print('check0')
     

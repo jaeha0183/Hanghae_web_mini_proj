@@ -76,7 +76,7 @@ def signup_post():
         return jsonify({'result': 'fail', 'msg': '이미 존재하는 ID입니다. 다른 ID를 사용하십시오.'})
 
 
-@app.route('/myreport', methods=["GET"])
+@app.route('/book/myreport', methods=["GET"])
 def myreport():
     user_id = session.get('id')
     print("myreport쪽"+user_id)
@@ -93,6 +93,11 @@ def book_get():
     res = requests.get(url)
     r = res.json()['item']
     return jsonify({'result': r})
+
+@app.route("/myreport")
+def book_myreport():
+    return render_template('myreport.html')
+
 
 
 @app.route("/book/search", methods=["POST"])

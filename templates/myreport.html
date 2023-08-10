@@ -221,20 +221,22 @@
     </style>
     <script>
         $(document).ready(function () {
-            bestseller();
+            myreport();
         });
 
         function lists(rows) {
             $('#cards-box').empty()
             rows.forEach((a) => {
                 let author = a['author']
-                let title = a['title']
-                let descMain = a['description'].substring(0, 50) + "...";
-                let descSub = a['description']
-                let image = a['cover']
-                let pubDate = a['pubDate']
+                let comment = a['comment']
+                let descSub = a['descSub']
+                let descMain = a['descSub'].substring(0, 50) + "...";
+                let image = a['image']
                 let isbn = a['isbn']
                 let itemId = a['itemId']
+                let pubDate = a['pubDate']
+                let star = a['star']
+                let title = a['title']
                 let temp_html = `
                                     <div class="col">
                                         <div class="card h-100">
@@ -294,9 +296,10 @@
             })
         }
 
-        function bestseller() {
-            fetch('/book').then((res) => res.json()).then((data) => {
+        function myreport() {
+            fetch('book/myreport').then((res) => res.json()).then((data) => {
                 let rows = data['result']
+                console.log(rows)
                 lists(rows)
             })
         }
@@ -358,8 +361,8 @@
 
 
     <div class="mybtns">
-        <button class="tab-button1" onclick="window.location.href='/main'">베스트 셀러</button>
-        <button class="tab-button2" onclick="window.location.href='/myreport'">내 독서록</button>
+        <button class="tab-button1" onclick="window.location.replace('/main')">베스트 셀러</button>
+        <button class="tab-button2" onclick="window.location.replace('/myreport')">내 독서록</button>
     </div>
 
     <div class="mycards">

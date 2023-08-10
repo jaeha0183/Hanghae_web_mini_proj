@@ -64,11 +64,13 @@ function login(){
         fetch('/login',{ method: "POST", body: formData }).then(res => res.json()).then(data => {
             console.log(data)
             alert(data['msg'])
+            if(data['result']=='success'){
+            var loginlink = 'http://localhost:5001/main';
+            location.href=loginlink;
+            }
         })
-        console.log(id, pw)
-        alert("로그인 성공!")
-        var loginlink = 'http://localhost:5001/main';
-        location.href=loginlink;
+    
+
     }
 }
 

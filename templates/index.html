@@ -137,6 +137,8 @@
             display: none;
         }
 
+        
+
         .mybtns {
             display: flex;
             flex-direction: row;
@@ -149,6 +151,8 @@
         .mybtns>button {
             margin-right: 10px;
         }
+
+        
     </style>
     <script>
         $(document).ready(function () {
@@ -236,15 +240,29 @@
                 lists(rows)
             })
         }
-
+        function logout() {
+      
+        if (confirm("로그아웃하시겠습니까?")) {
+        
+          window.location.href = "/login";
+        }
+}
 
     </script>
 </head>
 
 <body>
-    <div class="mytitle">
-        <h1 class="webTitle" onClick = "window.location.reload()"  style='cursor:pointer;'>모두의 서재</h1>
 
+  
+      <div>
+      <button class="Logout_Button" type="submit"  onclick="logout()" style='cursor:pointer; position: absolute; top: 0; right: 0;'>로그아웃</button>
+      </div>
+    
+
+  <div class="mytitle">
+
+        <h1 class="webTitle" onClick = "window.location.reload()"  style='cursor:pointer;'>모두의 서재</h1>
+       
         <div class="searchBar"> <input id="search_value" placeholder="도서 검색"> </div>
 
         <button class="searchButton" onclick="book_searching()" type="submit"> 검색 </button>

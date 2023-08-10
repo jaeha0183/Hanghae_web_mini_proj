@@ -17,8 +17,11 @@ CORS(app)
 
 @app.route('/main')
 def main():
-    return render_template('index.html')
+    user_id = session.get('id')
+    print("route 쪽 userId"+user_id)
+    return render_template('index.html', userid=user_id)
 
+# 이거 안 씀 (경윤)
 @app.route('/userid')
 def user():
     user_id = session.get('id')
@@ -29,9 +32,6 @@ def user():
         return jsonify({"result" : user_data['id']})
     else:
         return jsonify({"msg" : "로그인이 필요합니다."})
-
-
-
 
 @app.route('/')
 def home():

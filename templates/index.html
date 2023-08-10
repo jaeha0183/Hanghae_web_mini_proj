@@ -266,23 +266,9 @@
         function save_info(author, title, image, pubDate, isbn, itemId) {
             let star = $("#inputGroupSelect01").val(); //별점
             let message = $("#message-text").val(); //후기
-
-            let author1 = author
-            let title1 = title
-            let image1 = image
-            let pubDate1 = pubDate
-            let isbn1 =  isbn
-            let itemId1 = itemId
-          
             let formData = new FormData();
             formData.append("comment_chan_give", message); //후기
             formData.append("star_chan_give", star); //별점
-            formData.append("author_give", author1);
-            formData.append("title_give", title1);
-            formData.append("cover_give", cover1);
-            formData.append("pubDate_give", pubDate1);
-            formData.append("isbn_give", isbn1);
-            formData.append("itemId_give", itemId1);
             fetch("/book_save", { method: "POST", body: formData })
                 .then((res) => res.json())
                 .then((data) => {

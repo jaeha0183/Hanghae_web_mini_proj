@@ -100,13 +100,9 @@ def book_save():
         'star': star_chan_receive,
         'comment': comment_chan_receive,
         'author' : author_receive,
-        'title' : title_receive,
-        'cover' : cover_receive,
-        'pubDate' : pubDate_receive,
-        'isbn' : isbn_receive,
-        'itemId' : itemId_receive
+        
     }
-    db.userinfo.update_one({'num': int(num_receive)})
+  
     db.userinfo.insert_one(doc)
     return jsonify({'msg': '저장완료!'})
 

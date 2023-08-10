@@ -33,15 +33,6 @@
             box-shadow: 5px 5px 0 #302510;
         }
 
-        .imgBook {
-            text-align: center;
-        }
-
-        .boldText {
-            font-weight: bold;
-            font-size: 20px;
-        }
-
         .searchBar {
             border: 1px solid white;
             border-radius: 20px;
@@ -143,6 +134,15 @@
             font-size: 23px;
             font-weight: bolder;
         }
+
+        .imgBook {
+            text-align: center;
+        }
+
+        .subText{
+            font-weight: bolder;
+        }
+
         .mypost {
             width: 95%;
             max-width: 500px;
@@ -264,11 +264,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <p>줄거리</p>
+                                                                <p class="subText">줄거리</p>
                                                                 <p><text>${descSub}</text></p>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <p><label for="message-text">감상평</label></p>
+                                                                <p><label for="message-text" class="subText">감상평</label></p>
                                                                 <p><select class="form-select" id="inputGroupSelect01">
                                                                         <option selected>-- 선택하기 --</option>
                                                                         <option value="1">⭐</option>

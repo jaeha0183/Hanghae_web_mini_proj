@@ -76,9 +76,13 @@ def signup_post():
         return jsonify({'result': 'fail', 'msg': '이미 존재하는 ID입니다. 다른 ID를 사용하십시오.'})
 
 
-@app.route('/myreport')
+@app.route('/myreport', methods=["GET"])
 def myreport():
-    return render_template('myreport.html')
+    user_id = session.get('id')
+    print("myreport쪽"+user_id)
+    all_comments = list(db.userinfo.find({'userID':user_id},{'_id':False}))
+    print(all_comments)
+    return jsonify({'result':all_comments})
 
 
 @app.route("/book", methods=["GET"])

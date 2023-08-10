@@ -325,6 +325,16 @@
             })
         }
 
+        function myreport() {
+            fetch('/myreport').then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                console.log(rows)
+                lists(rows)
+            })
+        }
+
+
+
         function book_searching() {
             let search_value = $('#search_value').val()
 
@@ -389,7 +399,7 @@
 
     <div class="mybtns">
         <button class="tab-button1" onclick="window.location.href='/main'">베스트 셀러</button>
-        <button class="tab-button2" onclick="window.location.href='/myreport'">내 독서록</button>
+        <button class="tab-button2" onclick="myreport()">내 독서록</button>
     </div>
 
     <div class="mycards">

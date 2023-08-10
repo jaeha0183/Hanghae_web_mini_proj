@@ -67,7 +67,7 @@ function login(){
             console.log(data)
             alert(data['msg'])
             if(data['result']=='success'){
-            var loginlink = 'http://localhost:5001/main?';
+            var loginlink = 'https://sparta.herenas.com/main?';
             location.href=loginlink+value;
             }
         })

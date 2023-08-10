@@ -46,13 +46,9 @@ def signup_post():
     'id':id_receive,
     'pw':pw_receive
    }
-   results = db.users.find_one({'id': id_receive},{'_id':False})
+   db.users.insert_one(doc)
+   return jsonify({'msg':'회원가입 완료!'})
 
-   if results is None:
-    db.users.insert_one(doc)
-    return jsonify({'result': 'success','msg':'회원가입 완료!'})
-   else:
-    return jsonify({'result': 'fail', 'msg': '이미 존재하는 ID입니다. 다른 ID를 사용하십시오.'})
 @app.route('/myreport')
 def myreport():
     return render_template('myreport.html')   
@@ -111,10 +107,6 @@ def book_save():
     }
     db.userinfo.insert_one(doc)
     return jsonify({'msg': '저장완료!'})
-
-
-
-
 
 
 if __name__ == '__main__':

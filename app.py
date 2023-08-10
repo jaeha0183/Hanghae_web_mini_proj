@@ -73,7 +73,6 @@ def book_get():
           f"QueryType=Bestseller&MaxResults=32&start=1&SearchTarget=Book&output=js&Version=20131101&cover=Big"
     res = requests.get(url)
     r = res.json()['item']
-    print(r[0]['isbn'])
     return jsonify({'result': r})
 
 

@@ -33,9 +33,9 @@ def login_get():
     result = db.users.find_one({'id': id_receive, 'pw': pw_receive})
     print('check2')
 
-     if result is not None:
+    if result is not None:
         return jsonify({'result': 'success','msg':'로그인 성공!'})
-     else:
+    else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 @app.route('/signup')
@@ -88,21 +88,30 @@ def book_save():
     star_chan_receive = request.form['star_chan_give']
     comment_chan_receive = request.form['comment_chan_give']
     #
+    print(star_chan_receive, comment_chan_receive)
+    #
     author_receive = request.form['author_give']
     title_receive = request.form['title_give']
-    cover_receive = request.form['cover_give']
+    image_receive = request.form['image_give']
+    image_receive = request.form['image_give']
     pubDate_receive = request.form['pubDate_give']
     isbn_receive = request.form['isbn_give']
     itemId_receive = request.form['itemId_give']
+    descSub_receive = request.form['descSub_give']
   
 
     doc = {
         'star': star_chan_receive,
         'comment': comment_chan_receive,
         'author' : author_receive,
+        'title' : title_receive,
+        'image' : image_receive,
+        'pubDate' : pubDate_receive,
+        'isbn' : isbn_receive,
+        'itemId' : itemId_receive,
+        'descSub' : descSub_receive
         
     }
-  
     db.userinfo.insert_one(doc)
     return jsonify({'msg': '저장완료!'})
 

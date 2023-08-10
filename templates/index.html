@@ -279,13 +279,14 @@
                                                                         <option value="4">⭐⭐⭐⭐</option>
                                                                         <option value="5">⭐⭐⭐⭐⭐</option>
                                                                     </select></p>
+                                                                    <!--message-text 주석-->
                                                                 <p><textarea class="form-control" id="message-text"></textarea></p>
                                                             </div>
                                                         </form>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-                                                        <button onclick="save_info()" type="button" class="btn btn-primary">저장</button>
+                                                        <button onclick="save_info('${author}', '${title}', '${image}', '${pubDate}', '${isbn}', '${itemId}', '${descSub}')" type="button" class="btn btn-primary">저장</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -316,12 +317,22 @@
             })
         }
 
-        function save_info(author, title, image, pubDate, isbn, itemId) {
+        function save_info(author, title, image, pubDate, isbn, itemId, descSub) {
             let star = $("#inputGroupSelect01").val(); //별점
             let message = $("#message-text").val(); //후기
+            //
+            console.log(star, message)
             let formData = new FormData();
             formData.append("comment_chan_give", message); //후기
             formData.append("star_chan_give", star); //별점
+            formData.append("author_give", author)
+            formData.append("title_give", title)
+            formData.append("image_give", image)
+            formData.append("pubDate_give", pubDate)
+            formData.append("isbn_give", isbn)
+            formData.append("itemId_give", itemId)
+            formData.append("descSub_give", descSub)
+            console.log(formData)
             fetch("/book_save", { method: "POST", body: formData })
                 .then((res) => res.json())
                 .then((data) => {

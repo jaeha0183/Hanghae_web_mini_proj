@@ -22,16 +22,9 @@ def home():
 
 @app.route('/login', methods=['POST'])
 def login_get():
-    print('check0')
-    
     id_receive = request.form['id_gives']
     pw_receive = request.form['pw_gives']
-
-    print(id_receive)
-    print(pw_receive)
-    print('check1')
     result = db.users.find_one({'id': id_receive, 'pw': pw_receive})
-    print('check2')
 
     if result is not None:
         return jsonify({'result': 'success','msg':'로그인 성공!'})

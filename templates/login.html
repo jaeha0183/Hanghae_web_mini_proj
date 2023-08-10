@@ -52,18 +52,19 @@ function login(){
     if(id=='' || pw==''){
      alert('ID와 Password를 모두 입력하세요!')
     }
-    else{
+    else{ //백엔드로 로그인 정보 넘기는 기능~
         let id = $('#id').val()
         let pw = $('#pw').val()
-
+        console.log("frontcheck0")
         let formData = new FormData();
-        formData.append("id_give", id);
-        formData.append("pw_give", pw);
-
-        fetch('/signup', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-        console.log(data);
-        alert(data["msg"]);
-            });
+        formData.append("id_gives", id);
+        formData.append("pw_gives", pw);
+        
+        console.log("frontcheck1")
+        fetch('/login').then(res => res.json()).then(data => {
+            console.log(data)
+            alert(data['msg'])
+        })
     }
 }
 
@@ -77,6 +78,13 @@ function login(){
         <p> <input type="password" name="pw" placeholder="Password" id="pw"></p>
         <p class="btns"><button class="loginbtn" onclick="login()">로그인</button>  <button class="signupbtn" onclick="window.location.href='/signup'">회원가입</button></p>
     </div>
+
+  
+
+
+
+
+
 </body>
 
 </html>

@@ -90,11 +90,9 @@ def book_search():
 
 @app.route("/book_save", methods=["POST"])
 def book_save():
+    userID_receive = request.form['userID_give']
     star_chan_receive = request.form['star_chan_give']
     comment_chan_receive = request.form['comment_chan_give']
-    #
-    print(star_chan_receive, comment_chan_receive)
-    #
     author_receive = request.form['author_give']
     title_receive = request.form['title_give']
     image_receive = request.form['image_give']
@@ -104,6 +102,7 @@ def book_save():
     descSub_receive = request.form['descSub_give']
 
     doc = {
+        'userID' : userID_receive,
         'star': star_chan_receive,
         'comment': comment_chan_receive,
         'author': author_receive,
@@ -113,7 +112,6 @@ def book_save():
         'isbn': isbn_receive,
         'itemId': itemId_receive,
         'descSub': descSub_receive
-
     }
     db.userinfo.insert_one(doc)
     return jsonify({'msg': '저장완료!'})

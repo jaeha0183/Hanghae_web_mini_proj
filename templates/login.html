@@ -48,7 +48,7 @@ function login(){
    
     var id = document.getElementById('id').value;
     var pw = document.getElementById('pw').value;
-    value1 = id;
+    value = id;
     console.log('찍히겟지')
     console.log(id)
    
@@ -58,7 +58,6 @@ function login(){
     else{ //백엔드로 로그인 정보 넘기는 기능~
         let id = $('#id').val()
         let pw = $('#pw').val()
-        value = id
         console.log("frontcheck0")
 
         let formData = new FormData();
@@ -72,16 +71,14 @@ function login(){
             alert(data['msg'])
             if(data['result']=='success'){
             var loginlink = 'http://localhost:5001/main?';
-            location.href=loginlink+value1;
+            location.href=loginlink+value;
             }
         })
     
 
     }
 }
-
 </script>
-
 <body>
     <h1>모두의 서재</h1>
     <div class="loginbox">
@@ -90,13 +87,6 @@ function login(){
         <p> <input type="password" name="pw" placeholder="Password" id="pw"></p>
         <p class="btns"><button class="loginbtn" onclick="login()">로그인</button>  <button class="signupbtn" onclick="window.location.href='/signup'">회원가입</button></p>
     </div>
-
-  
-
-
-
-
-
 </body>
 
 </html>

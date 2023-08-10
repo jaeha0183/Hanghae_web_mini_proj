@@ -134,8 +134,8 @@
             width: 95%;
             max-width: 1200px;
         }
-        
-        .card-img-top{
+
+        .card-img-top {
             height: 420px;
         }
 
@@ -229,6 +229,8 @@
 
         function lists(rows) {
             $('#cards-box').empty()
+            let userID = getUser()
+
             let index = 0
             let string = 'a'
             rows.forEach((a) => {
@@ -284,13 +286,13 @@
                                                                         <option value="5">⭐⭐⭐⭐⭐</option>
                                                                     </select></p>
                                                                     <!--message-text 주석-->
-                                                                <p><textarea class="form-control" id="${string+index}"></textarea></p>
+                                                                <p><textarea class="form-control" id="${string + index}"></textarea></p>
                                                             </div>
                                                         </form>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-                                                        <button onclick="save_info('${author}', '${title}', '${image}', '${pubDate}', '${isbn}', '${itemId}', '${descSub}', ${index}, '${string+index}')" type="button" class="btn btn-primary">저장</button>
+                                                        <button onclick="save_info('${userID}', '${author}', '${title}', '${image}', '${pubDate}', '${isbn}', '${itemId}', '${descSub}', ${index}, '${string + index}')" type="button" class="btn btn-primary">저장</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -299,7 +301,7 @@
                                        `
 
                 $('#cards-box').append(temp_html)
-                index ++;
+                index++;
             })
         }
 
@@ -323,12 +325,13 @@
             })
         }
 
-        function save_info(author, title, image, pubDate, isbn, itemId, descSub, index, com) {
-            let star = $('#'+ index).val(); //별점
-            let message = $('#'+ com).val(); //후기
+        function save_info(userID, author, title, image, pubDate, isbn, itemId, descSub, index, com) {
+            let star = $('#' + index).val(); //별점
+            let message = $('#' + com).val(); //후기
             //
             console.log(star, message)
             let formData = new FormData();
+            formData.append("userID_give", userID)
             formData.append("comment_chan_give", message); //후기
             formData.append("star_chan_give", star); //별점
             formData.append("author_give", author)
@@ -342,13 +345,17 @@
             fetch("/book_save", { method: "POST", body: formData })
                 .then((res) => res.json())
                 .then((data) => {
-                  alert(data["msg"]);
-                  window.location.reload();
+                    alert(data["msg"]);
+                    window.location.reload();
                 });
         }
 
-      
-
+        function getUser() {
+            temp = location.href.split("?");
+            userID = temp[1].split(",");
+            //console.log("아이디는"+userID)
+            return userID
+        }
 
         function logout() {
 
@@ -395,5 +402,4 @@
     </div>
     </div>
 </body>
-
 </html>

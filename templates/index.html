@@ -160,7 +160,8 @@
             rows.forEach((a) => {
                 let author = a['author']
                 let title = a['title']
-                let desc = a['description'].substring(0, 50) + "...";
+                let descMain = a['description'].substring(0, 50) + "...";
+                let descSub = a['description']
                 let image = a['cover']
                 let pubDate = a['pubDate']
                 let isbn = a['isbn']
@@ -172,7 +173,7 @@
                                             type="button" data-bs-toggle="modal" data-bs-target="#${isbn}">
                                             <div class="card-body">
                                                 <h5 class="card-title">${title}</h5>
-                                                <p class="card-text">${desc}</p>
+                                                <p class="card-text">${descMain}</p>
                                                 <p class="card-text">${pubDate}</p>
                                                 <p class="card-text">${author}</p>
                                             </div>
@@ -195,7 +196,7 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <p>줄거리</p>
-                                                                <p><text>${desc}</text></p>
+                                                                <p><text>${descSub}</text></p>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <p><label for="message-text">감상평</label></p>

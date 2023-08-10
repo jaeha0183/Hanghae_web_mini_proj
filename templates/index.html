@@ -223,14 +223,26 @@
     </style>
     <script>
         $(document).ready(function () {
+            areyouuser()
             bestseller();
         });
+
+            fetch('/userid').then((res) => res.json()).then((data) => {
+                let users = data['result']
+                console.log(users)
+                return users
+            })
+
+
 
 
         function lists(rows) {
             $('#cards-box').empty()
-            let userID = session["id"]
-
+            fetch('/userid').then((res) => res.json()).then((data) => {
+                let users = data['result']
+                console.log(users)
+                let userID =  users
+            })
             let index = 0
             let string = 'a'
             rows.forEach((a) => {

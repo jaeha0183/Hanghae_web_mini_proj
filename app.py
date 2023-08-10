@@ -19,6 +19,19 @@ CORS(app)
 def main():
     return render_template('index.html')
 
+@app.route('/userid')
+def user():
+    user_id = session.get('id')
+    if user_id:
+        user_data = {
+            'id': user_id
+        }
+        return jsonify({"result" : user_data['id']})
+    else:
+        return jsonify({"msg" : "로그인이 필요합니다."})
+
+
+
 
 @app.route('/')
 def home():

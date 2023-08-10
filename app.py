@@ -20,7 +20,7 @@ def main():
 def home():
     return render_template('login.html')
 
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['POST'])
 def login_get():
     print('check0')
     
@@ -33,9 +33,9 @@ def login_get():
     result = db.users.find_one({'id': id_receive, 'pw': pw_receive})
     print('check2')
 
-    if result is not None:
-        return jsonify({'result': 'fail', 'msg': '로그인 성공!'})
-    else:
+     if result is not None:
+        return jsonify({'result': 'success','msg':'로그인 성공!'})
+     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 @app.route('/signup')

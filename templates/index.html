@@ -351,17 +351,17 @@
         }
 
         function getUser() {
-            temp = location.href.split("?");
-            userID = temp[1].split(",");
-            //console.log("아이디는"+userID)
+            temp = location.href
+            userID = temp[1].split("?");
+            console.log("아이디는"+userID)
             return userID
         }
 
         function logout() {
 
             if (confirm("로그아웃하시겠습니까?")) {
-                var loginlink = 'https://sparta.herenas.com';
-                location.href = loginlink;
+                var link = '/';
+                location.href = link;
             }
         }
     </script>

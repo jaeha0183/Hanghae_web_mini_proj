@@ -48,6 +48,9 @@ function login(){
    
     var id = document.getElementById('id').value;
     var pw = document.getElementById('pw').value;
+    value1 = id;
+    console.log('찍히겟지')
+    console.log(id)
    
     if(id=='' || pw==''){
      alert('ID와 Password를 모두 입력하세요!')
@@ -55,18 +58,21 @@ function login(){
     else{ //백엔드로 로그인 정보 넘기는 기능~
         let id = $('#id').val()
         let pw = $('#pw').val()
+        value = id
         console.log("frontcheck0")
+
         let formData = new FormData();
         formData.append("id_gives", id);
         formData.append("pw_gives", pw);
         
+
         console.log("frontcheck1")
         fetch('/login',{ method: "POST", body: formData }).then(res => res.json()).then(data => {
             console.log(data)
             alert(data['msg'])
             if(data['result']=='success'){
-            var loginlink = 'http://localhost:5001/main';
-            location.href=loginlink;
+            var loginlink = 'http://localhost:5001/main?';
+            location.href=loginlink+value1;
             }
         })
     

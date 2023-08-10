@@ -47,18 +47,18 @@ def signup_post():
     name_receive = request.form['name_give']
     pw_receive = request.form['pw_give']
 
-   doc = {
+    doc = {
     'name':name_receive,
     'id':id_receive,
     'pw':pw_receive
-   }
-   results = db.users.find_one({'id': id_receive},{'_id':False})
+    }
+    results = db.users.find_one({'id': id_receive},{'_id':False})
 
-   if results is None:
-    db.users.insert_one(doc)
-    return jsonify({'result': 'success','msg':'회원가입 완료!'})
-   else:
-    return jsonify({'result': 'fail', 'msg': '이미 존재하는 ID입니다. 다른 ID를 사용하십시오.'})
+    if results is None:
+        db.users.insert_one(doc)
+        return jsonify({'result': 'success','msg':'회원가입 완료!'})
+    else:
+        return jsonify({'result': 'fail', 'msg': '이미 존재하는 ID입니다. 다른 ID를 사용하십시오.'})
 
 
 @app.route('/myreport')

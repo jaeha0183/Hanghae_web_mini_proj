@@ -87,13 +87,32 @@ def book_search():
 def book_save():
     star_chan_receive = request.form['star_chan_give']
     comment_chan_receive = request.form['comment_chan_give']
-    print(star_chan_receive, comment_chan_receive)
+    #
+    author_receive = request.form['author_give']
+    title_receive = request.form['title_give']
+    cover_receive = request.form['cover_give']
+    pubDate_receive = request.form['pubDate_give']
+    isbn_receive = request.form['isbn_give']
+    itemId_receive = request.form['itemId_give']
+  
+
     doc = {
         'star': star_chan_receive,
-        'comment': comment_chan_receive
+        'comment': comment_chan_receive,
+        'author' : author_receive,
+        'title' : title_receive,
+        'cover' : cover_receive,
+        'pubDate' : pubDate_receive,
+        'isbn' : isbn_receive,
+        'itemId' : itemId_receive
     }
+    db.userinfo.update_one({'num': int(num_receive)})
     db.userinfo.insert_one(doc)
     return jsonify({'msg': '저장완료!'})
+
+
+
+
 
 
 if __name__ == '__main__':

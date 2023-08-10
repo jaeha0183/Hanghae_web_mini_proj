@@ -158,6 +158,49 @@
             margin-right: 10px;
         }
 
+        button {
+            background: #302510;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1.6em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+
+        button:hover {
+            background: #fff;
+            color: #302510;
+        }
+
+        button:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #302510;
+            transition: 400ms ease all;
+        }
+
+        button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        button:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
         /* form {
             background-color: #ffffff;
             width: 300px;
@@ -285,7 +328,7 @@
 
             if (confirm("로그아웃하시겠습니까?")) {
                 var loginlink = 'http://localhost:5001/';
-                location.href=loginlink;
+                location.href = loginlink;
             }
         }
     </script>
@@ -307,8 +350,8 @@
 
 
     <div class="mybtns">
-        <button class = "tab-button1" onclick="window.location.href='/main'">베스트 셀러</button>
-        <button class = "tab-button2" onclick="window.location.href='/myreport'">내 독서록</button>
+        <button class="tab-button1" onclick="window.location.href='/main'">베스트 셀러</button>
+        <button class="tab-button2" onclick="window.location.href='/myreport'">내 독서록</button>
     </div>
 
     <div class="mycards">

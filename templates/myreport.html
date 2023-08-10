@@ -158,6 +158,49 @@
             margin-right: 10px;
         }
 
+        button {
+            background: #302510;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1.6em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+
+        button:hover {
+            background: #fff;
+            color: #302510;
+        }
+
+        button:before,
+        button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #302510;
+            transition: 400ms ease all;
+        }
+
+        button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        button:hover:before,
+        button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
         /* form {
             background-color: #ffffff;
             width: 300px;
@@ -173,7 +216,75 @@
             bestseller();
         });
 
-        
+        function lists(rows) {
+            $('#cards-box').empty()
+            rows.forEach((a) => {
+                let author = a['author']
+                let title = a['title']
+                let descMain = a['description'].substring(0, 50) + "...";
+                let descSub = a['description']
+                let image = a['cover']
+                let pubDate = a['pubDate']
+                let isbn = a['isbn']
+                let itemId = a['itemId']
+                let temp_html = `
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <img src="${image}" class="card-img-top"
+                                            type="button" data-bs-toggle="modal" data-bs-target="#${isbn}">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${title}</h5>
+                                                <p class="card-text">${descMain}</p>
+                                                <p class="card-text">${pubDate}</p>
+                                                <p class="card-text">${author}</p>
+                                            </div>
+                                        <!-- 모달 부분 -->
+                                        <div class="modal fade" id="${isbn}" tabindex="-1" aria-labelledby="${itemId}" aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="${itemId}">${title}</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close">
+                                                            </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="mb-3">
+                                                                <div class="imgBook">
+                                                                    <img src="${image}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <p>줄거리</p>
+                                                                <p><text>${descSub}</text></p>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <p><label for="message-text">감상평</label></p>
+                                                                <p><select class="form-select" id="inputGroupSelect01">
+                                                                        <option selected>-- 선택하기 --</option>
+                                                                        <option value="1">⭐</option>
+                                                                        <option value="2">⭐⭐</option>
+                                                                        <option value="3">⭐⭐⭐</option>
+                                                                        <option value="4">⭐⭐⭐⭐</option>
+                                                                        <option value="5">⭐⭐⭐⭐⭐</option>
+                                                                    </select></p>
+                                                                <p><textarea class="form-control" id="message-text"></textarea></p>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
+                                                        <button onclick="save_info()" type="button" class="btn btn-primary">저장</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 모달 끝 -->
+                                       `
+                $('#cards-box').append(temp_html)
+            })
+        }
 
         function bestseller() {
             fetch('/book').then((res) => res.json()).then((data) => {
@@ -216,8 +327,8 @@
         function logout() {
 
             if (confirm("로그아웃하시겠습니까?")) {
-
-                window.location.href = "/login";
+                var loginlink = 'http://localhost:5001/';
+                location.href = loginlink;
             }
         }
     </script>
@@ -239,8 +350,8 @@
 
 
     <div class="mybtns">
-        <button class = "tab-button1" onclick="window.location.href='/main'">베스트 셀러</button>
-        <button class = "tab-button2" onclick="window.location.href='/myreport'">내 독서록</button>
+        <button class="tab-button1" onclick="window.location.href='/main'">베스트 셀러</button>
+        <button class="tab-button2" onclick="window.location.href='/myreport'">내 독서록</button>
     </div>
 
     <div class="mycards">
@@ -251,7 +362,6 @@
                         <h5 class="card-title">제목입니다</h5>
                         <p class="card-text">내용입니다</p>
                         <p class="mycomment">저자일걸요</p>
-                        <p class="star">⭐⭐⭐⭐⭐</p>
                     </div>
                 </div>
             </div>

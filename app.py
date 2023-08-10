@@ -43,6 +43,10 @@ def signup_post():
    db.users.insert_one(doc)
    return jsonify({'msg':'회원가입 완료!'})
 
+@app.route('/myreport')
+def myreport():
+    return render_template('myreport.html')   
+
 
 @app.route("/book", methods=["GET"])
 def book_get():

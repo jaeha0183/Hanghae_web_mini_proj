@@ -226,8 +226,11 @@
             bestseller();
         });
 
+
         function lists(rows) {
             $('#cards-box').empty()
+            let index = 0
+            let string = 'a'
             rows.forEach((a) => {
                 let author = a['author']
                 let title = a['title']
@@ -237,6 +240,7 @@
                 let pubDate = a['pubDate']
                 let isbn = a['isbn']
                 let itemId = a['itemId']
+
                 let temp_html = `
                                     <div class="col">
                                         <div class="card h-100">
@@ -271,7 +275,7 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <p><label for="message-text">감상평</label></p>
-                                                                <p><select class="form-select" id="inputGroupSelect01">
+                                                                <p><select class="form-select" id="${index}">
                                                                         <option selected>-- 선택하기 --</option>
                                                                         <option value="1">⭐</option>
                                                                         <option value="2">⭐⭐</option>
@@ -280,20 +284,22 @@
                                                                         <option value="5">⭐⭐⭐⭐⭐</option>
                                                                     </select></p>
                                                                     <!--message-text 주석-->
-                                                                <p><textarea class="form-control" id="message-text"></textarea></p>
+                                                                <p><textarea class="form-control" id="${string+index}"></textarea></p>
                                                             </div>
                                                         </form>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-                                                        <button onclick="save_info('${author}', '${title}', '${image}', '${pubDate}', '${isbn}', '${itemId}', '${descSub}')" type="button" class="btn btn-primary">저장</button>
+                                                        <button onclick="save_info('${author}', '${title}', '${image}', '${pubDate}', '${isbn}', '${itemId}', '${descSub}', ${index}, '${string+index}')" type="button" class="btn btn-primary">저장</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- 모달 끝 -->
                                        `
+
                 $('#cards-box').append(temp_html)
+                index ++;
             })
         }
 
@@ -317,9 +323,9 @@
             })
         }
 
-        function save_info(author, title, image, pubDate, isbn, itemId, descSub) {
-            let star = $("#inputGroupSelect01").val(); //별점
-            let message = $("#message-text").val(); //후기
+        function save_info(author, title, image, pubDate, isbn, itemId, descSub, index, com) {
+            let star = $('#'+ index).val(); //별점
+            let message = $('#'+ com).val(); //후기
             //
             console.log(star, message)
             let formData = new FormData();

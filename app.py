@@ -4,9 +4,11 @@ from bs4 import BeautifulSoup
 from pymongo import MongoClient
 from flask_cors import CORS
 import certifi
+
 ca = certifi.where()
 TTBkey: "ttbpalsied1142001"
-client = MongoClient('mongodb+srv://jinhey:dbtester@cluster0.r3i3cqv.mongodb.net/?retryWrites=true&w=majority',tlsCAFile=ca)
+client = MongoClient('mongodb+srv://jinhey:dbtester@cluster0.r3i3cqv.mongodb.net/?retryWrites=true&w=majority',
+                     tlsCAFile=ca)
 db = client.dbsparta
 app = Flask(__name__)
 CORS(app)
@@ -16,9 +18,11 @@ CORS(app)
 def main():
     return render_template('index.html')
 
+
 @app.route('/')
 def home():
     return render_template('login.html')
+
 
 @app.route('/login', methods=['POST'])
 def login_get():
@@ -27,31 +31,34 @@ def login_get():
     result = db.users.find_one({'id': id_receive, 'pw': pw_receive})
 
     if result is not None:
-        return jsonify({'result': 'success','msg':'로그인 성공!'})
+        return jsonify({'result': 'success', 'msg': '로그인 성공!'})
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
+
 @app.route('/signup')
 def signup():
-   return render_template('signup.html')
+    return render_template('signup.html')
+
 
 @app.route('/signup', methods=['POST'])
 def signup_post():
-   id_receive = request.form['id_give']
-   name_receive = request.form['name_give']
-   pw_receive = request.form['pw_give']
+    id_receive = request.form['id_give']
+    name_receive = request.form['name_give']
+    pw_receive = request.form['pw_give']
 
-   doc = {
-    'name':name_receive,
-    'id':id_receive,
-    'pw':pw_receive
-   }
-   db.users.insert_one(doc)
-   return jsonify({'msg':'회원가입 완료!'})
+    doc = {
+        'name': name_receive,
+        'id': id_receive,
+        'pw': pw_receive
+    }
+    db.users.insert_one(doc)
+    return jsonify({'msg': '회원가입 완료!'})
+
 
 @app.route('/myreport')
 def myreport():
-    return render_template('myreport.html')   
+    return render_template('myreport.html')
 
 
 @app.route("/book", methods=["GET"])
@@ -86,31 +93,25 @@ def book_save():
     author_receive = request.form['author_give']
     title_receive = request.form['title_give']
     image_receive = request.form['image_give']
-    image_receive = request.form['image_give']
     pubDate_receive = request.form['pubDate_give']
     isbn_receive = request.form['isbn_give']
     itemId_receive = request.form['itemId_give']
     descSub_receive = request.form['descSub_give']
-  
 
     doc = {
         'star': star_chan_receive,
         'comment': comment_chan_receive,
-        'author' : author_receive,
-        'title' : title_receive,
-        'image' : image_receive,
-        'pubDate' : pubDate_receive,
-        'isbn' : isbn_receive,
-        'itemId' : itemId_receive,
-        'descSub' : descSub_receive
-        
+        'author': author_receive,
+        'title': title_receive,
+        'image': image_receive,
+        'pubDate': pubDate_receive,
+        'isbn': isbn_receive,
+        'itemId': itemId_receive,
+        'descSub': descSub_receive
+
     }
     db.userinfo.insert_one(doc)
     return jsonify({'msg': '저장완료!'})
-
-
-
-
 
 
 if __name__ == '__main__':

@@ -22,8 +22,21 @@ def home():
 
 @app.route('/login', methods=['GET'])
 def login_get():
-    userinfo = list(db.users.find({},{'_id':False}))
-    return jsonify({'msg':'GET연결 완료!'})
+    print('check0')
+    
+    id_receive = request.form['id_gives']
+    pw_receive = request.form['pw_gives']
+
+    print(id_receive)
+    print(pw_receive)
+    print('check1')
+    result = db.users.find_one({'id': id_receive, 'pw': pw_receive})
+    print('check2')
+
+    if result is not None:
+        return jsonify({'result': 'fail', 'msg': '로그인 성공!'})
+    else:
+        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 @app.route('/signup')
 def signup():

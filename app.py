@@ -12,18 +12,18 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/')
+@app.route('/main')
 def main():
     return render_template('index.html')
 
-@app.route('/login')
-def login():
+@app.route('/')
+def home():
     return render_template('login.html')
 
-
-# @app.route('/')
-# def home():
-#    return render_template('login.html')
+@app.route('/login', methods=['GET'])
+def login_get():
+    userinfo = list(db.users.find({},{'_id':False}))
+    return jsonify({'msg':'GET연결 완료!'})
 
 @app.route('/signup')
 def signup():

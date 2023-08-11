@@ -168,7 +168,7 @@
             margin-right: 10px;
         }
 
-        button {
+        .tab-button1 {
             background: #302510;
             color: #fff;
             border: none;
@@ -181,13 +181,13 @@
             outline: none;
         }
 
-        button:hover {
+        .tab-button1:hover {
             background: #fff;
             color: #302510;
         }
 
-        button:before,
-        button:after {
+        .tab-button1:before,
+        .tab-button1:after {
             content: '';
             position: absolute;
             top: 0;
@@ -198,15 +198,58 @@
             transition: 400ms ease all;
         }
 
-        button:after {
+        .tab-button1:after {
             right: inherit;
             top: inherit;
             left: 0;
             bottom: 0;
         }
 
-        button:hover:before,
-        button:hover:after {
+        .tab-button1:hover:before,
+        .tab-button1:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
+
+        .tab-button2 {
+            background: #302510;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1.6em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+
+        .tab-button2:hover {
+            background: #fff;
+            color: #302510;
+        }
+
+        .tab-button2:before,
+        .tab-button2:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #302510;
+            transition: 400ms ease all;
+        }
+
+        .tab-button2:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .tab-button2:hover:before,
+        .tab-button2:hover:after {
             width: 100%;
             transition: 800ms ease all;
         }

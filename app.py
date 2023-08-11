@@ -10,7 +10,7 @@ TTBkey: "ttbpalsied1142001"
 client = MongoClient('mongodb+srv://jinhey:dbtester@cluster0.r3i3cqv.mongodb.net/?retryWrites=true&w=majority',
                      tlsCAFile=ca)
 db = client.dbsparta
-app = Flask(__name__)
+application = app = Flask(__name__)
 app.secret_key = "heypoppop"
 CORS(app)
 
@@ -141,4 +141,4 @@ def book_save():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5001, debug=True)
+    app.run()

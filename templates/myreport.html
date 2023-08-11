@@ -33,21 +33,32 @@
             box-shadow: 5px 5px 0 #302510;
         }
 
+        .imgBook {
+            text-align: center;
+        }
+
+        .boldText {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
         .searchBar {
             border: 1px solid white;
             border-radius: 20px;
             margin: 20px 0px 20px 0px;
         }
 
-        .Logout_Button {
+        button.Logout_Button {
             border: 1px solid white;
             border-radius: 20px;
             margin: 20px 0px 20px 0px;
             all: unset;
             cursor: pointer;
-            width: 80px;
-            height: 80px;
+            width: 150px;
+            height: 90px
+
         }
+
 
         input {
             all: unset;
@@ -125,22 +136,15 @@
             width: 95%;
             max-width: 1200px;
         }
-                
-        .card-img-top{
+
+        .card-img-top {
             height: 420px;
         }
-        
+
         .card-title {
             font-size: 23px;
             font-weight: bolder;
-        }
-
-        .imgBook {
-            text-align: center;
-        }
-
-        .subText{
-            font-weight: bolder;
+            margin-bottom: 20;
         }
 
         .mypost {
@@ -166,7 +170,7 @@
             margin-right: 10px;
         }
 
-        button {
+        .tab-button1 {
             background: #302510;
             color: #fff;
             border: none;
@@ -179,13 +183,13 @@
             outline: none;
         }
 
-        button:hover {
+        .tab-button1:hover {
             background: #fff;
             color: #302510;
         }
 
-        button:before,
-        button:after {
+        .tab-button1:before,
+        .tab-button1:after {
             content: '';
             position: absolute;
             top: 0;
@@ -196,28 +200,61 @@
             transition: 400ms ease all;
         }
 
-        button:after {
+        .tab-button1:after {
             right: inherit;
             top: inherit;
             left: 0;
             bottom: 0;
         }
 
-        button:hover:before,
-        button:hover:after {
+        .tab-button1:hover:before,
+        .tab-button1:hover:after {
             width: 100%;
             transition: 800ms ease all;
         }
 
-        /* form {
-            background-color: #ffffff;
-            width: 300px;
-            height: 44px;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        } */
+        .tab-button2 {
+            background: #302510;
+            color: #fff;
+            border: none;
+            position: relative;
+            height: 60px;
+            font-size: 1.6em;
+            padding: 0 2em;
+            cursor: pointer;
+            transition: 800ms ease all;
+            outline: none;
+        }
+
+        .tab-button2:hover {
+            background: #fff;
+            color: #302510;
+        }
+
+        .tab-button2:before,
+        .tab-button2:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #302510;
+            transition: 400ms ease all;
+        }
+
+        .tab-button2:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        .tab-button2:hover:before,
+        .tab-button2:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
     </style>
     <script>
         $(document).ready(function () {

@@ -227,6 +227,7 @@
         function lists(rows) {
             $('#cards-box').empty()
             rows.forEach((a) => {
+                let userid = a['userID']
                 let author = a['author']
                 let comment = a['comment']
                 let descSub = a['descSub']
@@ -268,18 +269,17 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <p class="subText">줄거리</p>
-                                                                <p><text>${descSub}</text></p>
+                                                                <p><text>${descSub}</text></p><br>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <p><label for="message-text" class="subText">내 감상평</label></p>
-                                                                    <p>내 별점 : ${star_repeat}</p>
-                                                                <p>내 후기 : ${comment}</p>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-                                                        <button onclick="save_info()" type="button" class="btn btn-primary">저장</button>
+                                                                <p><label for="message-text" class="subText">${userid}님의 감상평</label></p>
+                                                                    <p>${star_repeat}</p>
+                                                                    <p>${comment}</p>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary">닫기</button>
                                                     </div>
                                                 </div>
                                             </div>

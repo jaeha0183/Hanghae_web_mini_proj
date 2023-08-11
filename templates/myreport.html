@@ -236,6 +236,7 @@
                 let itemId = a['itemId']
                 let pubDate = a['pubDate']
                 let star = a['star']
+                let star_repeat = '⭐'.repeat(star)
                 let title = a['title']
                 let temp_html = `
                                     <div class="col">
@@ -270,16 +271,9 @@
                                                                 <p><text>${descSub}</text></p>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <p><label for="message-text" class="subText">감상평</label></p>
-                                                                <p><select class="form-select" id="inputGroupSelect01">
-                                                                        <option selected>-- 선택하기 --</option>
-                                                                        <option value="1">⭐</option>
-                                                                        <option value="2">⭐⭐</option>
-                                                                        <option value="3">⭐⭐⭐</option>
-                                                                        <option value="4">⭐⭐⭐⭐</option>
-                                                                        <option value="5">⭐⭐⭐⭐⭐</option>
-                                                                    </select></p>
-                                                                <p><textarea class="form-control" id="message-text"></textarea></p>
+                                                                <p><label for="message-text" class="subText">내 감상평</label></p>
+                                                                    <p>내 별점 : ${star_repeat}</p>
+                                                                <p>내 후기 : ${comment}</p>
                                                             </div>
                                                         </form>
                                                     </div>

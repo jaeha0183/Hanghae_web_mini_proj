@@ -10,7 +10,7 @@ TTBkey: "ttbpalsied1142001"
 client = MongoClient('mongodb+srv://jinhey:dbtester@cluster0.r3i3cqv.mongodb.net/?retryWrites=true&w=majority',
                      tlsCAFile=ca)
 db = client.dbsparta
-application = app = Flask(__name__)
+app = Flask(__name__)
 app.secret_key = "heypoppop"
 CORS(app)
 
@@ -76,13 +76,9 @@ def signup_post():
         return jsonify({'result': 'fail', 'msg': '이미 존재하는 ID입니다. 다른 ID를 사용하십시오.'})
 
 
-@app.route('/book/myreport', methods=["GET"])
+@app.route('/myreport')
 def myreport():
-    user_id = session.get('id')
-    print("myreport쪽"+user_id)
-    all_comments = list(db.userinfo.find({'userID':user_id},{'_id':False}))
-    print(all_comments)
-    return jsonify({'result':all_comments})
+    return render_template('myreport.html')
 
 
 @app.route("/book", methods=["GET"])
@@ -93,11 +89,6 @@ def book_get():
     res = requests.get(url)
     r = res.json()['item']
     return jsonify({'result': r})
-
-@app.route("/myreport")
-def book_myreport():
-    return render_template('myreport.html')
-
 
 
 @app.route("/book/search", methods=["POST"])
@@ -141,4 +132,4 @@ def book_save():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run('0.0.0.0', port=5001, debug=True)
